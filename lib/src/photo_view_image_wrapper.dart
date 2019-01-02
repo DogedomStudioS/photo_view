@@ -60,12 +60,12 @@ class PhotoViewImageWrapper extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _PhotoViewImageWrapperState();
+    return PhotoViewImageWrapperState();
   }
 
 }
 
-class _PhotoViewImageWrapperState extends State<PhotoViewImageWrapper>
+class PhotoViewImageWrapperState extends State<PhotoViewImageWrapper>
     with TickerProviderStateMixin implements PhotoViewImageWrapperGetter {
   Offset _position;
   Offset _normalizedPosition;
@@ -279,10 +279,12 @@ class _PhotoViewImageWrapperState extends State<PhotoViewImageWrapper>
     }
   }
 
+  @override
   double scale() {
     return _scale;
   }
 
+  @override
   Offset offset() {
     return _position;
   }
