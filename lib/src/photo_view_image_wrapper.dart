@@ -3,6 +3,10 @@ import 'package:photo_view/src/photo_view_scale_boundaries.dart';
 import 'package:photo_view/src/photo_view_scale_state.dart';
 import 'package:photo_view/src/photo_view_utils.dart';
 
+abstract class PhotoViewImageWrapperGetter {
+  Offset offset();
+  double scale();
+}
 
 /// Internal widget in which controls the transformation values of the content
 class PhotoViewImageWrapper extends StatefulWidget {
@@ -58,10 +62,11 @@ class PhotoViewImageWrapper extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _PhotoViewImageWrapperState();
   }
+
 }
 
 class _PhotoViewImageWrapperState extends State<PhotoViewImageWrapper>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin implements PhotoViewImageWrapperGetter {
   Offset _position;
   Offset _normalizedPosition;
   double _scale;
@@ -272,6 +277,14 @@ class _PhotoViewImageWrapperState extends State<PhotoViewImageWrapper>
       animatePosition(_position, Offset.zero);
       animateRotation(_rotation, 0.0);
     }
+  }
+
+  double scale() {
+    return _scale;
+  }
+
+  Offset offset() {
+    return _position;
   }
 
   void computeNextScaleState() {

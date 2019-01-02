@@ -11,6 +11,7 @@ import 'package:after_layout/after_layout.dart';
 export 'package:photo_view/src/photo_view_computed_scale.dart';
 export 'package:photo_view/src/photo_view_scale_state.dart';
 
+GlobalKey<PhotoViewImageWrapperState> _photoViewImageWrapperKey = GlobalKey<PhotoViewImageWrapperState>();
 /// A type definition for a [Function] that receives a [PhotoViewScaleState]
 ///
 typedef PhotoViewScaleStateChangedCallback = void Function(
@@ -212,6 +213,14 @@ class PhotoView extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _PhotoViewState();
   }
+
+  Offset imageWrapperPosition() {
+    return _photoViewImageWrapperKey.currentState.offset();
+  }
+
+  double imageWrapperScale() {
+    return _photoViewImageWrapperKey.currentState.scale();
+  }
 }
 
 class _PhotoViewState extends State<PhotoView>
@@ -290,6 +299,7 @@ class _PhotoViewState extends State<PhotoView>
 
   Widget _buildCustomChild(BuildContext context) {
     return PhotoViewImageWrapper.customChild(
+      key: _photoViewImageWrapperKey,
       customChild: widget.child,
       setNextScaleState: setNextScaleState,
       onStartPanning: onStartPanning,
@@ -336,6 +346,7 @@ class _PhotoViewState extends State<PhotoView>
 
   Widget _buildWrapperImage(BuildContext context) {
     return PhotoViewImageWrapper(
+      key: _photoViewImageWrapperKey,
       setNextScaleState: setNextScaleState,
       onStartPanning: onStartPanning,
       imageProvider: widget.imageProvider,
