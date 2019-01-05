@@ -281,7 +281,7 @@ class PhotoViewImageWrapperState extends State<PhotoViewImageWrapper>
 
   @override
   double scale() {
-    return _scale;
+    return getScaleForScaleState(widget.size, PhotoViewScaleState.initial, widget.childSize, widget.scaleBoundaries);
   }
 
   @override

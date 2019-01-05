@@ -14,8 +14,7 @@ export 'package:photo_view/src/photo_view_scale_state.dart';
 GlobalKey<PhotoViewImageWrapperState> _photoViewImageWrapperKey = GlobalKey<PhotoViewImageWrapperState>();
 /// A type definition for a [Function] that receives a [PhotoViewScaleState]
 ///
-typedef PhotoViewScaleStateChangedCallback = void Function(
-    PhotoViewScaleState scaleState);
+typedef PhotoViewScaleStateChangedCallback = void Function(PhotoViewScaleState scaleState);
 
 /// A [StatefulWidget] that contains all the photo view rendering elements.
 ///
